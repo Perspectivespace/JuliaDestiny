@@ -18,7 +18,7 @@ body, html {
     z-index: 10;
 }
 
-/* 3. СТИЛИ ДЛЯ ТОЧЕК */
+/* 3. ТОЧКИ */
 .map-point {
     position: absolute; color: white; text-decoration: none;
     text-align: center; cursor: pointer;
@@ -61,7 +61,7 @@ body, html {
 }
 .close-button:hover { transform: rotate(90deg); }
 
-/* Стили для окна "Обо мне" */
+/* Окно "Обо мне" */
 .healer-photo {
     width: 150px; height: 150px; background-color: #4c3b89;
     background-size: cover; background-position: center; border-radius: 50%;
@@ -81,26 +81,9 @@ body, html {
 .timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
 .timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
 
-/* ======================================================= */
-/* НОВЫЕ СТИЛИ: для видеоплеера                           */
-/* ======================================================= */
+/* Окно "Ключи к Гармонии" (Видео) */
 #practices video {
-    width: 100%; /* Растягиваем на всю ширину контейнера */
-    height: auto;
-    border-radius: 8px; /* Небольшое скругление углов */
-    outline: none; /* Убираем синюю рамку при фокусе */
-    border: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%; height: auto; border-radius: 8px;
+    outline: none; border: 1px solid rgba(255, 215, 0, 0.1);
     margin-top: 20px;
 }
-/* Добавьте это в конец style.css */
-[data-error]::after {
-    content: attr(data-error);
-    display: block;
-    padding: 20px;
-    margin-top: 15px;
-    background-color: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    color: #ffc0c0;
-    border-radius: 5px;
-}
-
