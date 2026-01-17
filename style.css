@@ -48,13 +48,10 @@ body, html {
     transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
 }
 .page-content.visible { opacity: 1; visibility: visible; transform: scale(1); }
-
-/* Общие стили для всех "оберток" внутри окон */
 .content-wrapper {
     background-color: #1a182d; color: #e0e0e0; padding: 40px;
     border-radius: 10px; width: 90%; max-width: 800px; max-height: 90vh;
-    overflow-y: auto; position: relative;
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    position: relative; border: 1px solid rgba(255, 215, 0, 0.2);
     box-shadow: 0 0 40px rgba(43, 32, 81, 0.5);
 }
 .close-button {
@@ -63,7 +60,10 @@ body, html {
 }
 .close-button:hover { transform: rotate(90deg); }
 
-/* Окно "Обо мне" */
+/* Окно "Обо мне" - добавляем ему скролл, если нужно */
+#about .content-wrapper {
+    overflow-y: auto;
+}
 .healer-photo {
     width: 150px; height: 150px; background-color: #4c3b89;
     background-size: cover; background-position: center; border-radius: 50%;
@@ -85,35 +85,40 @@ body, html {
 
 
 /* ======================================================= */
-/* ИЗМЕНЕНИЯ ЗДЕСЬ: Специальные стили для окна с видео     */
+/* ИЗМЕНЕНИЯ ЗДЕСЬ: Обновленные стили для окна с видео     */
 /* ======================================================= */
 
-/* 
-  Мы создаем правило только для окна с id="practices",
-  чтобы переопределить его размеры, не затрагивая другие окна.
-*/
+/* 1. Делаем контейнер гибким (flexbox) */
 #practices .content-wrapper {
-    /* 
-      1. Ограничиваем максимальную высоту, как вы и просили.
-      55vh — это 55% высоты экрана. Это близко к 50%, но дает
-      небольшой запас для заголовка и отступов.
-    */
-    max-height: 55vh;
-
-    /* 
-      2. Уменьшаем максимальную ширину, чтобы окно не было
-      слишком "растянутым" на больших экранах.
-    */
-    max-width: 700px;
+    max-height: 80vh; /* Можно сделать чуть выше, т.к. видео масштабируется */
+    max-width: 900px;
+    
+    /* Превращаем в flex-колонку */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Стили для самого видеоплеера внутри этого окна */
+/* 2. Настраиваем сам видеоплеер */
 #practices video {
+    /* 
+      КЛЮЧЕВОЕ ИЗМЕНЕНИЕ:
+      Это свойство заставляет видео полностью вписаться в свой контейнер,
+      сохраняя пропорции. Именно оно убирает скролл.
+    */
+    object-fit: contain;
+
+    /* 
+      Говорим видео, чтобы оно не было жесткого размера, 
+      а занимало все доступное пространство по высоте.
+      min-height: 0 - это технический трюк для правильной работы flexbox.
+    */
+    flex: 1;
+    min-height: 0;
+    
     width: 100%;
-    height: auto;
     border-radius: 8px;
     outline: none;
     border: 1px solid rgba(255, 215, 0, 0.1);
     margin-top: 20px;
-    display: block; /* Улучшает обработку элементом отступов */
+    display: block;
 }
