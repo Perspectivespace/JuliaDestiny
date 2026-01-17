@@ -48,17 +48,78 @@
         </div>
     </section>
 
+    <!-- ======================================================= -->
+    <!-- НОВОЕ ОКНО: Секция "Ключи к Гармонии" (Видео-медитация)  -->
+    <!-- ======================================================= -->
+    <section id="practices" class="page-content">
+        <div class="content-wrapper">
+            <a href="#" class="close-button">&times;</a>
+            <h2>Ключи к Гармонии: Медитация Потока</h2>
+            
+            <!-- 
+              HTML5 Видеоплеер. 
+              Атрибут 'controls' добавляет стандартные элементы управления.
+            -->
+            <video id="meditation-video" controls>
+                <!-- 
+                  ВАЖНО: Убедитесь, что ваш видеофайл называется 'meditation.mp4' 
+                  и лежит в той же папке, что и index.html 
+                -->
+                <source src="meditation.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео тег.
+            </video>
+        </div>
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Physics2DPlugin.min.js"></script>
     <script src="script.js"></script>
+    
+    <!-- ======================================================= -->
+    <!-- ОБНОВЛЕННЫЙ СКРИПТ: теперь управляет ДВУМЯ окнами      -->
+    <!-- ======================================================= -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Логика для окна "Источник Света" (без изменений) ---
             const aboutLink = document.querySelector('.map-point.sun');
             const aboutPage = document.querySelector('#about');
-            const closeButton = document.querySelector('#about .close-button');
+            const aboutCloseButton = document.querySelector('#about .close-button');
+            
             aboutLink.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.add('visible'); });
-            closeButton.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.remove('visible'); });
+            aboutCloseButton.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.remove('visible'); });
             aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { aboutPage.classList.remove('visible'); } });
+
+            // --- НОВАЯ ЛОГИКА: для окна "Ключи к Гармонии" ---
+            const practicesLink = document.querySelector('.map-point.constellation');
+            const practicesPage = document.querySelector('#practices');
+            const practicesCloseButton = document.querySelector('#practices .close-button');
+            const meditationVideo = document.querySelector('#meditation-video');
+
+            // Функция, которая прячет окно и останавливает видео
+            function closePracticesModal() {
+                practicesPage.classList.remove('visible');
+                meditationVideo.pause(); // <-- Ставим видео на паузу
+                meditationVideo.currentTime = 0; // <-- Сбрасываем на начало (опционально)
+            }
+
+            // Открываем окно по клику на звезду
+            practicesLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                practicesPage.classList.add('visible');
+            });
+
+            // Закрываем окно по клику на крестик
+            practicesCloseButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                closePracticesModal();
+            });
+
+            // Закрываем окно по клику на затемненный фон
+            practicesPage.addEventListener('click', (event) => {
+                if (event.target === practicesPage) {
+                    closePracticesModal();
+                }
+            });
         });
     </script>
 </body>
