@@ -11,35 +11,49 @@
 </head>
 <body>
 
-    <!-- СЛОЙ 1: ФОН С АНИМАЦИЕЙ -->
+    <!-- СЛОЙ 1: ФОН С АНИМАЦИЕЙ (ВСЕГДА ПОЗАДИ) -->
     <div class="background-layer">
         <canvas id="magic-dust"></canvas>
     </div>
 
-    <!-- СЛОЙ 2: ИНТЕРАКТИВНЫЙ КОНТЕНТ -->
+    <!-- СЛОЙ 2: ИНТЕРАКТИВНЫЙ КОНТЕНТ (ВСЕГДА ВПЕРЕДИ) -->
     <main class="content-layer">
-        <a href="#" class="map-point sun" style="top: 45%; left: 48%;"><span>Источник Света</span></a>
-        <a href="#" class="map-point constellation" style="top: 20%; left: 70%;"><span>Ключи к Гармонии</span></a>
-        <a href="#" class="map-point nebula" style="top: 75%; left: 25%;"><span>Хроники Трансформаций</span></a>
-        <a href="#" class="map-point moon" style="top: 80%; left: 80%;"><span>Зеркало Души</span></a>
+        <a href="#" class="map-point sun" style="top: 45%; left: 48%;">
+            <span>Источник Света</span>
+        </a>
+        <a href="#" class="map-point constellation" style="top: 20%; left: 70%;">
+            <span>Ключи к Гармонии</span>
+        </a>
+        <a href="#" class="map-point nebula" style="top: 75%; left: 25%;">
+            <span>Хроники Трансформаций</span>
+        </a>
+        <a href="#" class="map-point moon" style="top: 80%; left: 80%;">
+            <span>Зеркало Души</span>
+        </a>
     </main>
 
     <!-- Модальное окно "Обо мне" -->
     <section id="about" class="page-content">
-        <!-- ... (содержимое без изменений) ... -->
+        <div class="content-wrapper">
+            <a href="#" class="close-button">&times;</a>
+            <h2>Источник Света: Мой Путь</h2>
+            <div class="healer-photo"></div>
+            <p class="intro-text">Приветствую, путник души. Я — [Ваше Имя], и моя миссия — освещать путь тем, кто ищет гармонию и ответы в переплетениях судьбы.</p>
+            <div class="timeline">
+                <h3>Ключевые моменты моего пути:</h3>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2015 - Первое Пробуждение</h4><p>Столкнувшись с личным кризисом, я впервые ощутила тонкий мир.</p></div></div>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2018 - Встреча с Наставником</h4><p>Судьба свела меня с мудрым учителем, который передал мне сакральные знания.</p></div></div>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>Я почувствовала в себе силы помогать другим. Так родился мой дар.</p></div></div>
+            </div>
+        </div>
     </section>
 
-    <!-- Секция "Ключи к Гармонии" (Видео-медитация) -->
+    <!-- Модальное окно "Ключи к Гармонии" -->
     <section id="practices" class="page-content">
         <div class="content-wrapper">
             <a href="#" class="close-button">&times;</a>
-            <h2>Медитация на соединение с Душой (Высшим Я)</h2>
-            
-            <!-- 
-              ИЗМЕНЕНО: Добавлен атрибут onerror для отслеживания ошибок.
-              Также добавлен ID для более удобного доступа.
-            -->
-            <video id="meditation-video" controls onerror="this.parentElement.setAttribute('data-error', 'Ошибка: не удалось загрузить видео. Проверьте имя и расположение файла.');">
+            <h2>Ключи к Гармонии: Медитация Потока</h2>
+            <video id="meditation-video" controls>
                 <source src="meditation.mp4" type="video/mp4">
                 Ваш браузер не поддерживает видео тег.
             </video>
@@ -50,24 +64,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Physics2DPlugin.min.js"></script>
     <script src="script.js"></script>
     
-    <!-- Скрипт управления окнами (без изменений) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Управление окном "Источник Света" ---
             const aboutLink = document.querySelector('.map-point.sun');
             const aboutPage = document.querySelector('#about');
-            const aboutCloseButton = document.querySelector('#about .close-button');
+            const aboutCloseButton = aboutPage.querySelector('.close-button');
             aboutLink.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.add('visible'); });
             aboutCloseButton.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.remove('visible'); });
             aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { aboutPage.classList.remove('visible'); } });
 
+            // --- Управление окном "Ключи к Гармонии" ---
             const practicesLink = document.querySelector('.map-point.constellation');
             const practicesPage = document.querySelector('#practices');
-            const practicesCloseButton = document.querySelector('#practices .close-button');
-            const meditationVideo = document.querySelector('#meditation-video');
+            const practicesCloseButton = practicesPage.querySelector('.close-button');
+            const meditationVideo = document.getElementById('meditation-video');
             function closePracticesModal() {
                 practicesPage.classList.remove('visible');
-                meditationVideo.pause();
-                meditationVideo.currentTime = 0;
+                if (meditationVideo) {
+                    meditationVideo.pause();
+                    meditationVideo.currentTime = 0;
+                }
             }
             practicesLink.addEventListener('click', (event) => { event.preventDefault(); practicesPage.classList.add('visible'); });
             practicesCloseButton.addEventListener('click', (event) => { event.preventDefault(); closePracticesModal(); });
