@@ -1,50 +1,28 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
+    margin: 0; padding: 0; height: 100%; overflow: hidden;
     font-family: 'Cormorant Garamond', serif;
     background-color: #0b0816;
 }
 
 /* 1. ФОНОВЫЙ СЛОЙ */
 .background-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 
-      ИЗМЕНЕНО:
-      Применен градиент, который вы указали.
-    */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: radial-gradient(ellipse at center, #2b2051 0%, #440453 75%);
-    z-index: 1; /* Нижний слой */
+    z-index: 1;
 }
-
-#magic-dust {
-    width: 100%;
-    height: 100%;
-}
+#magic-dust { width: 100%; height: 100%; }
 
 /* 2. СЛОЙ КОНТЕНТА */
 .content-layer {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    z-index: 10; /* Верхний слой */
+    position: relative; width: 100%; height: 100vh;
+    z-index: 10;
 }
 
-/* 3. СТИЛИ ДЛЯ ТОЧЕК (без анимации появления) */
+/* 3. СТИЛИ ДЛЯ ТОЧЕК */
 .map-point {
-    position: absolute;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
+    position: absolute; color: white; text-decoration: none;
+    text-align: center; cursor: pointer;
 }
-
-/* Остальные стили без изменений */
 .map-point span { display: block; font-size: 18px; opacity: 0.8; transition: opacity 0.3s ease; }
 .map-point::before {
     content: ''; display: block; width: 20px; height: 20px;
@@ -60,7 +38,7 @@ body, html {
 }
 .sun::before { width: 50px; height: 50px; }
 
-/* --- Стили для модального окна (без изменений) --- */
+/* --- Стили для модальных окон (общие) --- */
 .page-content {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(11, 8, 22, 0.85); z-index: 1000;
@@ -82,6 +60,8 @@ body, html {
     color: #e0e0e0; text-decoration: none; transition: transform 0.3s ease;
 }
 .close-button:hover { transform: rotate(90deg); }
+
+/* Стили для окна "Обо мне" */
 .healer-photo {
     width: 150px; height: 150px; background-color: #4c3b89;
     background-size: cover; background-position: center; border-radius: 50%;
@@ -100,3 +80,15 @@ body, html {
 }
 .timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
 .timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
+
+/* ======================================================= */
+/* НОВЫЕ СТИЛИ: для видеоплеера                           */
+/* ======================================================= */
+#practices video {
+    width: 100%; /* Растягиваем на всю ширину контейнера */
+    height: auto;
+    border-radius: 8px; /* Небольшое скругление углов */
+    outline: none; /* Убираем синюю рамку при фокусе */
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin-top: 20px;
+}
