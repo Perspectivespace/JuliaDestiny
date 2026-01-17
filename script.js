@@ -3,10 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var end_panel = document.querySelector(".background-layer"); 
     var end_cv = document.getElementById("magic-dust");
     
-    if (!end_panel || !end_cv) {
-        console.error("Не найдены основные элементы для анимации.");
-        return;
-    }
+    if (!end_panel || !end_cv) { return; }
 
     var end_ctx = end_cv.getContext("2d");
     var end_cvWidth = parseInt(window.getComputedStyle(end_panel).width, 10);
@@ -19,12 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     start_fx();
 
     function start_fx() {
-        /*
-          ИЗМЕНЕНО:
-          Вся эта строка вызова заменена на параметры
-          из предоставленного вами кода для создания
-          более медленного и "медитативного" эффекта.
-        */
         init_fx(
             "circle", 800, 50, 50, 50, 50, 0, end_cvWidth, 0, end_cvHeight,
             1, 4, 0, 360, .1, 1.5, .1, .5, 360, 0, 0, 20, 40,
@@ -32,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     }
     
-    // ... (весь остальной код остается без изменений, он обеспечивает работу анимации)
-
     function init_fx(textureSpr, totalSpr, minWidth, maxWidth, minHeight, maxHeight, xMin, xMax, yMin, yMax, veloMin, veloMax, angleMin, angleMax, startScaleMin, startScaleMax, endScaleMin, endScaleMax, rotStart, rotEndMin, rotEndMax, minDur, maxDur, fadeInDur, fadeOutDur, gravitySpr, delaySpr, repeatSpr, delayTl) {
         for (var i = 0; i < totalSpr; i++) {
             sprites.push(createSprite(createShape(textureSpr, i)));
