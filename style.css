@@ -1,0 +1,102 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #0b0816;
+}
+
+/* 1. ФОНОВЫЙ СЛОЙ */
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 
+      ИЗМЕНЕНО:
+      Применен градиент, который вы указали.
+    */
+    background: radial-gradient(ellipse at center, #2b2051 0%, #440453 75%);
+    z-index: 1; /* Нижний слой */
+}
+
+#magic-dust {
+    width: 100%;
+    height: 100%;
+}
+
+/* 2. СЛОЙ КОНТЕНТА */
+.content-layer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 10; /* Верхний слой */
+}
+
+/* 3. СТИЛИ ДЛЯ ТОЧЕК (без анимации появления) */
+.map-point {
+    position: absolute;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Остальные стили без изменений */
+.map-point span { display: block; font-size: 18px; opacity: 0.8; transition: opacity 0.3s ease; }
+.map-point::before {
+    content: ''; display: block; width: 20px; height: 20px;
+    margin: 0 auto 10px; border-radius: 50%;
+    background-color: rgba(255, 215, 0, 0.7);
+    box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.map-point:hover span { opacity: 1; }
+.map-point:hover::before {
+    transform: scale(1.3);
+    box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6);
+}
+.sun::before { width: 50px; height: 50px; }
+
+/* --- Стили для модального окна (без изменений) --- */
+.page-content {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(11, 8, 22, 0.85); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden;
+    transform: scale(0.95);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+.page-content.visible { opacity: 1; visibility: visible; transform: scale(1); }
+.content-wrapper {
+    background-color: #1a182d; color: #e0e0e0; padding: 40px;
+    border-radius: 10px; width: 90%; max-width: 800px; max-height: 90vh;
+    overflow-y: auto; position: relative;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 40px rgba(43, 32, 81, 0.5);
+}
+.close-button {
+    position: absolute; top: 15px; right: 20px; font-size: 30px;
+    color: #e0e0e0; text-decoration: none; transition: transform 0.3s ease;
+}
+.close-button:hover { transform: rotate(90deg); }
+.healer-photo {
+    width: 150px; height: 150px; background-color: #4c3b89;
+    background-size: cover; background-position: center; border-radius: 50%;
+    float: left; margin: 0 30px 20px 0;
+    border: 3px solid rgba(255, 215, 0, 0.5);
+}
+.intro-text { line-height: 1.7; font-size: 18px; overflow: hidden; }
+.timeline {
+    clear: both; margin-top: 40px; position: relative;
+    padding-left: 30px; border-left: 2px solid rgba(255, 215, 0, 0.3);
+}
+.timeline-event { position: relative; margin-bottom: 30px; }
+.timeline-dot {
+    position: absolute; left: -40px; top: 5px; width: 15px; height: 15px;
+    border-radius: 50%; background-color: rgba(255, 215, 0, 0.8); border: 2px solid #1a182d;
+}
+.timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
+.timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
