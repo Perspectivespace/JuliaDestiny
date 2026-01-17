@@ -48,6 +48,8 @@ body, html {
     transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
 }
 .page-content.visible { opacity: 1; visibility: visible; transform: scale(1); }
+
+/* Общие стили для всех "оберток" внутри окон */
 .content-wrapper {
     background-color: #1a182d; color: #e0e0e0; padding: 40px;
     border-radius: 10px; width: 90%; max-width: 800px; max-height: 90vh;
@@ -81,9 +83,37 @@ body, html {
 .timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
 .timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
 
-/* Окно "Ключи к Гармонии" (Видео) */
+
+/* ======================================================= */
+/* ИЗМЕНЕНИЯ ЗДЕСЬ: Специальные стили для окна с видео     */
+/* ======================================================= */
+
+/* 
+  Мы создаем правило только для окна с id="practices",
+  чтобы переопределить его размеры, не затрагивая другие окна.
+*/
+#practices .content-wrapper {
+    /* 
+      1. Ограничиваем максимальную высоту, как вы и просили.
+      55vh — это 55% высоты экрана. Это близко к 50%, но дает
+      небольшой запас для заголовка и отступов.
+    */
+    max-height: 55vh;
+
+    /* 
+      2. Уменьшаем максимальную ширину, чтобы окно не было
+      слишком "растянутым" на больших экранах.
+    */
+    max-width: 700px;
+}
+
+/* Стили для самого видеоплеера внутри этого окна */
 #practices video {
-    width: 100%; height: auto; border-radius: 8px;
-    outline: none; border: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid rgba(255, 215, 0, 0.1);
     margin-top: 20px;
+    display: block; /* Улучшает обработку элементом отступов */
 }
