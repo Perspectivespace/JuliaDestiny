@@ -60,10 +60,8 @@ body, html {
 }
 .close-button:hover { transform: rotate(90deg); }
 
-/* Окно "Обо мне" - добавляем ему скролл, если нужно */
-#about .content-wrapper {
-    overflow-y: auto;
-}
+/* Окно "Обо мне" */
+#about .content-wrapper { overflow-y: auto; }
 .healer-photo {
     width: 150px; height: 150px; background-color: #4c3b89;
     background-size: cover; background-position: center; border-radius: 50%;
@@ -83,42 +81,36 @@ body, html {
 .timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
 .timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
 
-
-/* ======================================================= */
-/* ИЗМЕНЕНИЯ ЗДЕСЬ: Обновленные стили для окна с видео     */
-/* ======================================================= */
-
-/* 1. Делаем контейнер гибким (flexbox) */
+/* Окно "Ключи к Гармонии" (Видео) */
 #practices .content-wrapper {
-    max-height: 80vh; /* Можно сделать чуть выше, т.к. видео масштабируется */
-    max-width: 900px;
-    
-    /* Превращаем в flex-колонку */
-    display: flex;
-    flex-direction: column;
+    max-height: 80vh; max-width: 900px;
+    display: flex; flex-direction: column;
+}
+#practices video {
+    object-fit: contain; flex: 1; min-height: 0;
+    width: 100%; border-radius: 8px; outline: none;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin-top: 20px; display: block;
 }
 
-/* 2. Настраиваем сам видеоплеер */
-#practices video {
-    /* 
-      КЛЮЧЕВОЕ ИЗМЕНЕНИЕ:
-      Это свойство заставляет видео полностью вписаться в свой контейнер,
-      сохраняя пропорции. Именно оно убирает скролл.
-    */
-    object-fit: contain;
 
-    /* 
-      Говорим видео, чтобы оно не было жесткого размера, 
-      а занимало все доступное пространство по высоте.
-      min-height: 0 - это технический трюк для правильной работы flexbox.
-    */
-    flex: 1;
-    min-height: 0;
-    
-    width: 100%;
-    border-radius: 8px;
-    outline: none;
-    border: 1px solid rgba(255, 215, 0, 0.1);
-    margin-top: 20px;
-    display: block;
+/* ======================================================= */
+/* НОВЫЕ СТИЛИ: для иконок социальных сетей                */
+/* ======================================================= */
+.social-links {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+.social-links a {
+    display: inline-block;
+    color: rgba(255, 215, 0, 0.6); /* Приглушенный золотой цвет */
+    font-size: 28px;
+    margin: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-links a:hover {
+    color: rgba(255, 215, 0, 1); /* Яркий золотой при наведении */
+    transform: scale(1.1);
 }
