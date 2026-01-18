@@ -4,21 +4,17 @@ body, html {
     background-color: #0b0816;
 }
 
-/* 1. ФОНОВЫЙ СЛОЙ */
+/* ... (основные стили слоев, точек и модальных окон остаются без изменений) ... */
 .background-layer {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: radial-gradient(ellipse at center, #2b2051 0%, #440453 75%);
     z-index: 1;
 }
 #magic-dust { width: 100%; height: 100%; }
-
-/* 2. СЛОЙ КОНТЕНТА */
 .content-layer {
     position: relative; width: 100%; height: 100vh;
     z-index: 10;
 }
-
-/* 3. ТОЧКИ */
 .map-point {
     position: absolute; color: white; text-decoration: none;
     text-align: center; cursor: pointer;
@@ -37,8 +33,6 @@ body, html {
     box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6);
 }
 .sun::before { width: 50px; height: 50px; }
-
-/* --- Стили для модальных окон (общие) --- */
 .page-content {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(11, 8, 22, 0.85); z-index: 1000;
@@ -59,8 +53,6 @@ body, html {
     color: #e0e0e0; text-decoration: none; transition: transform 0.3s ease;
 }
 .close-button:hover { transform: rotate(90deg); }
-
-/* Окно "Обо мне" */
 #about .content-wrapper { overflow-y: auto; }
 .healer-photo {
     width: 150px; height: 150px; background-color: #4c3b89;
@@ -80,8 +72,6 @@ body, html {
 }
 .timeline-content h4 { margin: 0 0 5px 0; color: #ffd700; }
 .timeline-content p { margin: 0; font-size: 16px; opacity: 0.8; }
-
-/* Окно "Ключи к Гармонии" (Видео) */
 #practices .content-wrapper {
     max-height: 80vh; max-width: 900px;
     display: flex; flex-direction: column;
@@ -93,24 +83,44 @@ body, html {
     margin-top: 20px; display: block;
 }
 
-
-/* ======================================================= */
-/* НОВЫЕ СТИЛИ: для иконок социальных сетей                */
-/* ======================================================= */
+/* --- Стили иконок --- */
 .social-links {
     text-align: center;
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 215, 0, 0.1);
 }
+
+/* ======================================================= */
+/* ИЗМЕНЕНИЯ ЗДЕСЬ: Добавляем стили для анимации иконок    */
+/* ======================================================= */
 .social-links a {
     display: inline-block;
-    color: rgba(255, 215, 0, 0.6); /* Приглушенный золотой цвет */
+    color: rgba(255, 215, 0, 0.6);
     font-size: 28px;
     margin: 0 15px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    
+    /* 1. Начальное состояние: невидимы и сдвинуты вниз */
+    opacity: 0;
+    transform: translateY(20px);
+    
+    /* 2. Описание анимации: плавная, со всеми свойствами */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, color 0.3s ease;
 }
+
+/* 3. Конечное состояние: видимы и на своем месте */
+.social-links a.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 4. Задержка для каждой иконки, чтобы они появлялись по очереди */
+.social-links a:nth-child(1).visible { transition-delay: 0.2s; }
+.social-links a:nth-child(2).visible { transition-delay: 0.3s; }
+.social-links a:nth-child(3).visible { transition-delay: 0.4s; }
+
+/* Эффект при наведении (остается без изменений) */
 .social-links a:hover {
-    color: rgba(255, 215, 0, 1); /* Яркий золотой при наведении */
-    transform: scale(1.1);
+    color: rgba(255, 215, 0, 1);
+    transform: scale(1.1) translateY(0); /* Добавляем translateY, чтобы не было "прыжка" */
 }
