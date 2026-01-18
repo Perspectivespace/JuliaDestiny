@@ -4,18 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кармический Целитель - Карта Судьбы</title>
-    
-    <!-- Стили сайта -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- ======================================================= -->
-    <!-- НОВОЕ: Подключаем библиотеку иконок Font Awesome      -->
-    <!-- ======================================================= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -39,24 +31,18 @@
             <a href="#" class="close-button">&times;</a>
             <h2>Источник Света: Мой Путь</h2>
             <div class="healer-photo"></div>
-            <p class="intro-text">Приветствую, путник души. Я — [Ваше Имя], и моя миссия — освещать путь тем, кто ищет гармонию и ответы в переплетениях судьбы.</p>
+            <p class="intro-text">Приветствую, путник души. Я — [Ваше Имя], и моя миссия — освещать путь...</p>
             <div class="timeline">
                 <h3>Ключевые моменты моего пути:</h3>
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2015 - Первое Пробуждение</h4><p>...</p></div></div>
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2018 - Встреча с Наставником</h4><p>...</p></div></div>
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>...</p></div></div>
             </div>
-
-            <!-- ======================================================= -->
-            <!-- НОВЫЙ БЛОК: Ссылки на социальные сети                 -->
-            <!-- ======================================================= -->
             <div class="social-links">
-                <!-- Замените "#" на реальные ссылки -->
                 <a href="#" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                 <a href="#" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 <a href="#" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
             </div>
-
         </div>
     </section>
 
@@ -76,27 +62,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Physics2DPlugin.min.js"></script>
     <script src="script.js"></script>
     
+    <!-- ======================================================= -->
+    <!-- ОБНОВЛЕННЫЙ СКРИПТ: с логикой анимации иконок         -->
+    <!-- ======================================================= -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Управление окном "Источник Света"
+            // --- Управление окном "Источник Света" ---
             const aboutLink = document.querySelector('.map-point.sun');
             const aboutPage = document.querySelector('#about');
-            const aboutCloseButton = aboutPage.querySelector('.close-button');
-            aboutLink.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.add('visible'); });
-            aboutCloseButton.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.remove('visible'); });
-            aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { aboutPage.classList.remove('visible'); } });
+            const socialIcons = aboutPage.querySelectorAll('.social-links a'); // Находим иконки
 
-            // Управление окном "Ключи к Гармонии"
+            // Функция открытия
+            function openAboutModal() {
+                aboutPage.classList.add('visible');
+                // Запускаем анимацию иконок
+                socialIcons.forEach(icon => icon.classList.add('visible'));
+            }
+
+            // Функция закрытия
+            function closeAboutModal() {
+                aboutPage.classList.remove('visible');
+                // Сбрасываем анимацию иконок для следующего открытия
+                socialIcons.forEach(icon => icon.classList.remove('visible'));
+            }
+
+            aboutLink.addEventListener('click', (event) => { event.preventDefault(); openAboutModal(); });
+            aboutPage.querySelector('.close-button').addEventListener('click', (event) => { event.preventDefault(); closeAboutModal(); });
+            aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { closeAboutModal(); } });
+
+
+            // --- Управление окном "Ключи к Гармонии" (без изменений) ---
             const practicesLink = document.querySelector('.map-point.constellation');
             const practicesPage = document.querySelector('#practices');
-            const practicesCloseButton = practicesPage.querySelector('.close-button');
             const meditationVideo = document.getElementById('meditation-video');
             function closePracticesModal() {
                 practicesPage.classList.remove('visible');
                 if (meditationVideo) { meditationVideo.pause(); meditationVideo.currentTime = 0; }
             }
             practicesLink.addEventListener('click', (event) => { event.preventDefault(); practicesPage.classList.add('visible'); });
-            practicesCloseButton.addEventListener('click', (event) => { event.preventDefault(); closePracticesModal(); });
+            practicesPage.querySelector('.close-button').addEventListener('click', (event) => { event.preventDefault(); closePracticesModal(); });
             practicesPage.addEventListener('click', (event) => { if (event.target === practicesPage) { closePracticesModal(); } });
         });
     </script>
