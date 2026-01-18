@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кармический Целитель - Карта Судьбы</title>
+    
+    <!-- Стили сайта -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- ======================================================= -->
+    <!-- НОВОЕ: Подключаем библиотеку иконок Font Awesome      -->
+    <!-- ======================================================= -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <!-- СЛОЙ 1: ФОН С АНИМАЦИЕЙ (ВСЕГДА ПОЗАДИ) -->
+    <!-- СЛОЙ 1: ФОН С АНИМАЦИЕЙ -->
     <div class="background-layer">
         <canvas id="magic-dust"></canvas>
     </div>
 
-    <!-- СЛОЙ 2: ИНТЕРАКТИВНЫЙ КОНТЕНТ (ВСЕГДА ВПЕРЕДИ) -->
+    <!-- СЛОЙ 2: ИНТЕРАКТИВНЫЙ КОНТЕНТ -->
     <main class="content-layer">
-        <a href="#" class="map-point sun" style="top: 45%; left: 48%;">
-            <span>Источник Света</span>
-        </a>
-        <a href="#" class="map-point constellation" style="top: 20%; left: 70%;">
-            <span>Ключи к Гармонии</span>
-        </a>
-        <a href="#" class="map-point nebula" style="top: 75%; left: 25%;">
-            <span>Хроники Трансформаций</span>
-        </a>
-        <a href="#" class="map-point moon" style="top: 80%; left: 80%;">
-            <span>Зеркало Души</span>
-        </a>
+        <a href="#" class="map-point sun" style="top: 45%; left: 48%;"><span>Источник Света</span></a>
+        <a href="#" class="map-point constellation" style="top: 20%; left: 70%;"><span>Ключи к Гармонии</span></a>
+        <a href="#" class="map-point nebula" style="top: 75%; left: 25%;"><span>Хроники Трансформаций</span></a>
+        <a href="#" class="map-point moon" style="top: 80%; left: 80%;"><span>Зеркало Души</span></a>
     </main>
 
     <!-- Модальное окно "Обо мне" -->
@@ -41,10 +42,21 @@
             <p class="intro-text">Приветствую, путник души. Я — [Ваше Имя], и моя миссия — освещать путь тем, кто ищет гармонию и ответы в переплетениях судьбы.</p>
             <div class="timeline">
                 <h3>Ключевые моменты моего пути:</h3>
-                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2015 - Первое Пробуждение</h4><p>Столкнувшись с личным кризисом, я впервые ощутила тонкий мир.</p></div></div>
-                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2018 - Встреча с Наставником</h4><p>Судьба свела меня с мудрым учителем, который передал мне сакральные знания.</p></div></div>
-                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>Я почувствовала в себе силы помогать другим. Так родился мой дар.</p></div></div>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2015 - Первое Пробуждение</h4><p>...</p></div></div>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2018 - Встреча с Наставником</h4><p>...</p></div></div>
+                <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>...</p></div></div>
             </div>
+
+            <!-- ======================================================= -->
+            <!-- НОВЫЙ БЛОК: Ссылки на социальные сети                 -->
+            <!-- ======================================================= -->
+            <div class="social-links">
+                <!-- Замените "#" на реальные ссылки -->
+                <a href="#" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
+            </div>
+
         </div>
     </section>
 
@@ -66,7 +78,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Управление окном "Источник Света" ---
+            // Управление окном "Источник Света"
             const aboutLink = document.querySelector('.map-point.sun');
             const aboutPage = document.querySelector('#about');
             const aboutCloseButton = aboutPage.querySelector('.close-button');
@@ -74,17 +86,14 @@
             aboutCloseButton.addEventListener('click', (event) => { event.preventDefault(); aboutPage.classList.remove('visible'); });
             aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { aboutPage.classList.remove('visible'); } });
 
-            // --- Управление окном "Ключи к Гармонии" ---
+            // Управление окном "Ключи к Гармонии"
             const practicesLink = document.querySelector('.map-point.constellation');
             const practicesPage = document.querySelector('#practices');
             const practicesCloseButton = practicesPage.querySelector('.close-button');
             const meditationVideo = document.getElementById('meditation-video');
             function closePracticesModal() {
                 practicesPage.classList.remove('visible');
-                if (meditationVideo) {
-                    meditationVideo.pause();
-                    meditationVideo.currentTime = 0;
-                }
+                if (meditationVideo) { meditationVideo.pause(); meditationVideo.currentTime = 0; }
             }
             practicesLink.addEventListener('click', (event) => { event.preventDefault(); practicesPage.classList.add('visible'); });
             practicesCloseButton.addEventListener('click', (event) => { event.preventDefault(); closePracticesModal(); });
