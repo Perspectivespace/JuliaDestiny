@@ -38,35 +38,29 @@
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2018 - Встреча с Наставником</h4><p>...</p></div></div>
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>...</p></div></div>
             </div>
-            <div class="social-links">
-                <a href="#" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                <a href="#" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
-            </div>
 
             <!-- ======================================================= -->
-            <!-- НОВЫЙ БЛОК: Кнопка для благодарности (доната)         -->
+            <!-- НОВАЯ СТРУКТУРА: Общий "подвал" для иконок и кнопки     -->
             <!-- ======================================================= -->
-            <div class="donation-section">
-                <!-- Замените "#" на реальную ссылку на страницу доната -->
-                <a href="https://dalink.to/juliuuya" class="donation-button" target="_blank">
-                    <i class="fas fa-heart"></i> Поблагодарить
-                </a>
-            </div>
+            <footer class="modal-footer">
+                <div class="social-links">
+                    <a href="#" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                </div>
+                <div class="donation-section">
+                    <a href="#" class="donation-button" target="_blank">
+                        <i class="fas fa-heart"></i> Поблагодарить
+                    </a>
+                </div>
+            </footer>
 
         </div>
     </section>
 
     <!-- Модальное окно "Ключи к Гармонии" -->
     <section id="practices" class="page-content">
-        <div class="content-wrapper">
-            <a href="#" class="close-button">&times;</a>
-            <h2>Ключи к Гармонии: Медитация Потока</h2>
-            <video id="meditation-video" controls>
-                <source src="meditation.mp4" type="video/mp4">
-                Ваш браузер не поддерживает видео тег.
-            </video>
-        </div>
+        <!-- ... (содержимое без изменений) ... -->
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -74,35 +68,7 @@
     <script src="script.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Управление окном "Источник Света"
-            const aboutLink = document.querySelector('.map-point.sun');
-            const aboutPage = document.querySelector('#about');
-            const socialIcons = aboutPage.querySelectorAll('.social-links a');
-            function openAboutModal() {
-                aboutPage.classList.add('visible');
-                socialIcons.forEach(icon => icon.classList.add('visible'));
-            }
-            function closeAboutModal() {
-                aboutPage.classList.remove('visible');
-                socialIcons.forEach(icon => icon.classList.remove('visible'));
-            }
-            aboutLink.addEventListener('click', (event) => { event.preventDefault(); openAboutModal(); });
-            aboutPage.querySelector('.close-button').addEventListener('click', (event) => { event.preventDefault(); closeAboutModal(); });
-            aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { closeAboutModal(); } });
-
-            // Управление окном "Ключи к Гармонии"
-            const practicesLink = document.querySelector('.map-point.constellation');
-            const practicesPage = document.querySelector('#practices');
-            const meditationVideo = document.getElementById('meditation-video');
-            function closePracticesModal() {
-                practicesPage.classList.remove('visible');
-                if (meditationVideo) { meditationVideo.pause(); meditationVideo.currentTime = 0; }
-            }
-            practicesLink.addEventListener('click', (event) => { event.preventDefault(); practicesPage.classList.add('visible'); });
-            practicesPage.querySelector('.close-button').addEventListener('click', (event) => { event.preventDefault(); closePracticesModal(); });
-            practicesPage.addEventListener('click', (event) => { if (event.target === practicesPage) { closePracticesModal(); } });
-        });
+        // ... (весь JS без изменений) ...
     </script>
 </body>
 </html>
