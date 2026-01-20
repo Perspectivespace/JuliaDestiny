@@ -4,17 +4,21 @@ body, html {
     background-color: #0b0816;
 }
 
-/* ... (все стили до блока #about .content-wrapper остаются без изменений) ... */
+/* 1. ФОНОВЫЙ СЛОЙ */
 .background-layer {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: radial-gradient(ellipse at center, #2b2051 0%, #440453 75%);
     z-index: 1;
 }
 #magic-dust { width: 100%; height: 100%; }
+
+/* 2. СЛОЙ КОНТЕНТА */
 .content-layer {
     position: relative; width: 100%; height: 100vh;
     z-index: 10;
 }
+
+/* 3. ТОЧКИ */
 .map-point {
     position: absolute; color: white; text-decoration: none;
     text-align: center; cursor: pointer;
@@ -33,6 +37,8 @@ body, html {
     box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6);
 }
 .sun::before { width: 50px; height: 50px; }
+
+/* --- Стили для модальных окон (общие) --- */
 .page-content {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(11, 8, 22, 0.85); z-index: 1000;
@@ -56,41 +62,45 @@ body, html {
 
 /* Окно "Обо мне" */
 #about .content-wrapper { overflow-y: auto; }
-/* ... (стили healer-photo, intro-text, timeline без изменений) ... */
-.healer-photo{width: 150px; height: 150px; background-color: #4c3b89; background-size: cover; background-position: center; border-radius: 50%; float: left; margin: 0 30px 20px 0; border: 3px solid rgba(255, 215, 0, 0.5);}
-.intro-text{line-height: 1.7; font-size: 18px; overflow: hidden;}
-.timeline{clear: both; margin-top: 40px; position: relative; padding-left: 30px; border-left: 2px solid rgba(255, 215, 0, 0.3);}
-.timeline-event{position: relative; margin-bottom: 30px;}
-.timeline-dot{position: absolute; left: -40px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background-color: rgba(255, 215, 0, 0.8); border: 2px solid #1a182d;}
-.timeline-content h4{margin: 0 0 5px 0; color: #ffd700;}
-.timeline-content p{margin: 0; font-size: 16px; opacity: 0.8;}
+.healer-photo {
+    width: 150px; height: 150px; background-color: #4c3b89;
+    background-size: cover; background-position: center; border-radius: 50%;
+    float: left; margin: 0 30px 10px 0;
+    border: 3px solid rgba(255, 215, 0, 0.5);
+}
+#about .content-wrapper p {
+    line-height: 1.7; font-size: 17px;
+    margin-bottom: 1em; text-align: justify;
+}
+.intro-text { overflow: hidden; }
+.final-call {
+    margin-top: 30px; padding-top: 15px;
+    font-style: italic; text-align: center;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+    color: #e0c387;
+}
 
 /* Окно "Ключи к Гармонии" (Видео) */
-#practices .content-wrapper { max-height: 80vh; max-width: 900px; display: flex; flex-direction: column; }
-#practices video { object-fit: contain; flex: 1; min-height: 0; width: 100%; border-radius: 8px; outline: none; border: 1px solid rgba(255, 215, 0, 0.1); margin-top: 20px; display: block; }
+#practices .content-wrapper {
+    max-height: 80vh; max-width: 900px;
+    display: flex; flex-direction: column;
+}
+#practices video {
+    object-fit: contain; flex: 1; min-height: 0;
+    width: 100%; border-radius: 8px; outline: none;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    margin-top: 20px; display: block;
+}
 
-
-/* ======================================================= */
-/* ИЗМЕНЕНИЯ ЗДЕСЬ: Новая структура "подвала" окна         */
-/* ======================================================= */
-
+/* --- "Подвал" модального окна --- */
 .modal-footer {
-    display: flex;
-    justify-content: space-between; /* Иконки слева, кнопка справа */
-    align-items: center; /* Идеальное выравнивание по вертикали */
-    margin-top: 40px;
-    padding-top: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 40px; padding-top: 20px;
     border-top: 1px solid rgba(255, 215, 0, 0.1);
 }
-
-.social-links {
-    /* Убираем старые отступы, т.к. теперь они в .modal-footer */
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-}
+.social-links { margin-top: 0; padding-top: 0; border-top: none; }
 .social-links a {
-    display: inline-block; font-size: 28px; margin: 0 15px 0 0; /* Убрали отступ слева */
+    display: inline-block; font-size: 28px; margin: 0 15px 0 0;
     opacity: 0; transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
 }
@@ -101,7 +111,7 @@ body, html {
 .social-links a:nth-child(3).visible { transition-delay: 0.4s; }
 .social-links a:hover { transform: scale(1.1) translateY(0); }
 
-/* --- Индивидуальные цвета иконок (без изменений) --- */
+/* Цвета иконок */
 .social-links .fa-telegram { color: #0088cc; }
 .social-links a:hover .fa-telegram { color: #2AABEE; }
 .social-links .fa-youtube { color: #c4302b; }
@@ -109,49 +119,22 @@ body, html {
 .social-links .fa-vk { color: #4a76a8; }
 .social-links a:hover .fa-vk { color: #5B88BD; }
 
-/* ======================================================= */
-/* ИЗМЕНЕНИЯ ЗДЕСЬ: Полностью переработанная кнопка        */
-/* ======================================================= */
-
-.donation-section {
-    margin-top: 0; /* Убираем старые отступы */
-}
-
+/* --- Кнопка "Поблагодарить" --- */
+.donation-section { margin-top: 0; }
 .donation-button {
-    display: inline-flex; /* Используем flex для выравнивания иконки и текста */
-    align-items: center;
-    padding: 10px 22px;
-    border-radius: 50px;
-    text-decoration: none;
-    
-    font-family: 'Cormorant Garamond', serif; /* Явно задаем красивый шрифт */
-    font-size: 16px; /* Увеличиваем размер */
-    font-weight: 700; /* Делаем жирнее */
-    letter-spacing: 0.5px; /* Добавляем "воздуха" */
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Тень для текста */
-
-    /* Новый, гармоничный и контрастный градиент */
+    display: inline-flex; align-items: center;
+    padding: 10px 22px; border-radius: 50px; text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.5px; color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     background: linear-gradient(45deg, #8A63D2, #C895FF);
-    
-    border: 1px solid rgba(255, 255, 255, 0.25); /* Светлая рамка для объема */
-    
-    /* Более выраженная, тематическая тень */
+    border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 15px rgba(138, 99, 210, 0.3);
-    
     transition: all 0.3s ease;
 }
-
 .donation-button:hover {
-    /* Градиент становится ярче */
     background: linear-gradient(45deg, #9C78E0, #D2A8FF);
-    /* Тень становится глубже */
     box-shadow: 0 6px 20px rgba(138, 99, 210, 0.5);
-    /* Кнопка "приподнимается" */
     transform: translateY(-3px);
 }
-
-.donation-button .fa-heart {
-    margin-right: 10px;
-    color: #ffc0cb; /* Нежный розовый, который хорошо смотрится на фиолетовом */
-}
+.donation-button .fa-heart { margin-right: 10px; color: #ffc0cb; }
