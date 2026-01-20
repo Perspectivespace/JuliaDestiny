@@ -39,10 +39,21 @@
                 <div class="timeline-event"><div class="timeline-dot"></div><div class="timeline-content"><h4>2021 - Начало Практики</h4><p>...</p></div></div>
             </div>
             <div class="social-links">
-                <a href="https://t.me/juliuuya" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://www.youtube.com/@juliuuya" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbFVpYzZHbng4SFJrYldVTWxySGhEYk15VTZHd3xBQ3Jtc0trUjBqUzFuQjZnMk1aemFnWFVBNFhvMjNpcFhTT2FyV0MyOWhTQXc5R3RXZmNBMEM1VEd0UGcyb3MydHlpbV9va2dOdGJ3TWM1cW9oQnhiNmhZcnlYOHV5eVloYWExeDdERTkwOFh2Ri0yTUhzcmlfQQ&q=https%3A%2F%2Fvk.com%2Fcelitelsydeb" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
+                <a href="#" title="Telegram" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" title="YouTube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="VKontakte" target="_blank"><i class="fa-brands fa-vk"></i></a>
             </div>
+
+            <!-- ======================================================= -->
+            <!-- НОВЫЙ БЛОК: Кнопка для благодарности (доната)         -->
+            <!-- ======================================================= -->
+            <div class="donation-section">
+                <!-- Замените "#" на реальную ссылку на страницу доната -->
+                <a href="https://dalink.to/juliuuya" class="donation-button" target="_blank">
+                    <i class="fas fa-heart"></i> Поблагодарить
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -62,36 +73,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Physics2DPlugin.min.js"></script>
     <script src="script.js"></script>
     
-    <!-- ======================================================= -->
-    <!-- ОБНОВЛЕННЫЙ СКРИПТ: с логикой анимации иконок         -->
-    <!-- ======================================================= -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Управление окном "Источник Света" ---
+            // Управление окном "Источник Света"
             const aboutLink = document.querySelector('.map-point.sun');
             const aboutPage = document.querySelector('#about');
-            const socialIcons = aboutPage.querySelectorAll('.social-links a'); // Находим иконки
-
-            // Функция открытия
+            const socialIcons = aboutPage.querySelectorAll('.social-links a');
             function openAboutModal() {
                 aboutPage.classList.add('visible');
-                // Запускаем анимацию иконок
                 socialIcons.forEach(icon => icon.classList.add('visible'));
             }
-
-            // Функция закрытия
             function closeAboutModal() {
                 aboutPage.classList.remove('visible');
-                // Сбрасываем анимацию иконок для следующего открытия
                 socialIcons.forEach(icon => icon.classList.remove('visible'));
             }
-
             aboutLink.addEventListener('click', (event) => { event.preventDefault(); openAboutModal(); });
             aboutPage.querySelector('.close-button').addEventListener('click', (event) => { event.preventDefault(); closeAboutModal(); });
             aboutPage.addEventListener('click', (event) => { if (event.target === aboutPage) { closeAboutModal(); } });
 
-
-            // --- Управление окном "Ключи к Гармонии" (без изменений) ---
+            // Управление окном "Ключи к Гармонии"
             const practicesLink = document.querySelector('.map-point.constellation');
             const practicesPage = document.querySelector('#practices');
             const meditationVideo = document.getElementById('meditation-video');
@@ -106,4 +106,3 @@
     </script>
 </body>
 </html>
-
